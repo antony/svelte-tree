@@ -1,9 +1,34 @@
-<Tree></Tree>
+<Tree roots={{roots}}></Tree>
 
 <script>
     import Tree from '../tree/component.html'
 
+    const roots = [{
+        name: 'Green Fruits',
+        icon: '',
+        expanded: true,
+        children: [
+            { name: 'Apple' },
+            { name: 'Pear' },
+            { name: 'Lime' }
+        ]
+    },
+    {
+        name: 'Red Fruits',
+        icon: '',
+        children: [
+            { name: 'Apple' },
+            { name: 'Tomato' }
+        ]
+    }]
+
     export default {
+        data () {
+            return {
+                roots
+            }
+        },
+
         components: {
             Tree
         }

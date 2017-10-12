@@ -7,16 +7,42 @@
     import './aimara.css'
 
     export default {
+        data () {
+            return {
+                roots: null,
+                colour: 'white',
+                tree: null
+            }
+        },
+
         oncreate() {
-            const tree = createTree(this.refs.tree, 'white')
+            const tree = createTree(this.refs.tree, this.get('colour'))
+            this.set({ tree })
 
-            const node1 = tree.createNode('First node', false, star)
-            node1.createChildNode('First child node', false, blueKey)
-
+            const roots = this.get('roots')
+            roots.forEach(root => {
+                this.renderRoot(tree, root)
+            })
             tree.drawTree()
+        },
 
-            const node2 = tree.createNode('Second node', false, star)
-            node2.createChildNode('Second child node', false, blueKey)
+        methods: {
+            renderRoot: function (tree, data) {
+                const { name, icon = star, children, expanded } = data
+                const node = tree.createNode(name, expanded, icon)
+                this.renderChildren(node, children)
+            },
+
+            renderChild: function (parent, data) {
+                const { name, icon = blueKey, children = [], expanded } = data
+                const node = parent.createChildNode(name, expanded, icon)
+                this.renderChildren(node, children)
+            },
+
+            renderChildren: function (parent, children = []) {
+                console.log('rendering', children)
+                children.forEach(child => this.renderChild(parent, child))
+            }
         }
     }
 </script>

@@ -19,7 +19,7 @@ function createTree (pDiv, pBackColour, pContextMenu) {
     rendered: false,
     /// // Creating a new node
     // pText: Text displayed on the node;
-    // pExpanded: True or false, indicating wether the node starts expanded or not;
+    // pExpanded: True or false, indicating whether the node starts expanded or not;
     // pIcon: Relative path to the icon displayed with the node. Set null if the node has no icon;
     // pParentNode: Reference to the parent node. Set null to create the node on the root;
     // pTag: Tag is used to store additional information on the node. All node attributes are visible when programming events and context menu actions;
@@ -227,7 +227,7 @@ function createTree (pDiv, pBackColour, pContextMenu) {
     /// // Expanding node
     // pNode: Reference to the node;
     expandNode: function (pNode) {
-      if (pNode.childNodes.length > 0 && pNode.expanded === false) {
+      if (pNode.childNodes.length > 0 && !pNode.expanded) {
         if (this.nodeBeforeOpenEvent !== undefined) { this.nodeBeforeOpenEvent(pNode) }
 
         var img = pNode.elementLi.getElementsByTagName('img')[0]
@@ -245,7 +245,7 @@ function createTree (pDiv, pBackColour, pContextMenu) {
     /// // Collapsing node
     // pNode: Reference to the node;
     collapseNode: function (pNode) {
-      if (pNode.childNodes.length > 0 && pNode.expanded === true) {
+      if (pNode.childNodes.length > 0 && pNode.expanded) {
         var img = pNode.elementLi.getElementsByTagName('img')[0]
 
         pNode.expanded = false
