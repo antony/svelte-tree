@@ -1,0 +1,22 @@
+<div ref:tree></div>
+
+<script>
+    import { createTree } from './aimara'
+    import star from './images/star.png'
+    import blueKey from './images/blue_key.png'
+    import './aimara.css'
+
+    export default {
+        oncreate() {
+            const tree = createTree(this.refs.tree, 'white')
+
+            const node1 = tree.createNode('First node', false, star)
+            node1.createChildNode('First child node', false, blueKey)
+
+            tree.drawTree()
+
+            const node2 = tree.createNode('Second node', false, star)
+            node2.createChildNode('Second child node', false, blueKey)
+        }
+    }
+</script>
